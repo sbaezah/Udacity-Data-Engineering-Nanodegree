@@ -11,27 +11,31 @@ class StageToRedshiftOperator(BaseOperator):
         
         INPUT PARAMATERS:
             aws_credentials_id: Connection Id of the Amazon Web services that should be created in airflow before execute the DAG
-            redshift_conn_id: Conn Id of the Airflow connection to redshift database
             
-        
+            redshift_conn_id: Connection Id of the Redshift cluster that should be created in Airflow before de DAG execution
+            
+            table: name of the destination table, in this operator the input table will be a staging table.
+            
+            s3_bucket: the S3 bucket that will be use in the process, for this process the public buck should be "udacity-dend"
+            
+            s3_key: S3 key that will be use, it is like a 'name folder', eg. 'log_data/' 
+            
+            data_format: the user can choose between two: 'csv' or 'json'.
+            
+            delimiter: if the user selects 'csv' as data_format, it can put the delimiter for the csv file
+            
+            ignore_headers: the user has two options: '0' or '1'
+            
+            data_format: the user can choose between 'json' or 'csv', when it try with 'csv', probably will need the ignore_headers parameter setted in '1'.
+            
+            jsonpaths: this input is for the folder and file of JSONpaths file
+            
+            
+    Output:
+        there is no one output from this script
         
     """
     
-    """Transfer data from S3 to staging tables in redshift database.
-    
-    Parameters:
-    aws_credentials_id: Conn Id of the Airflow connection to Amazon Web Services
-    redshift_conn_id: Conn Id of the Airflow connection to redshift database
-    table: name of the staging table to populate
-    s3_bucket: name of S3 bucket, e.g. "udacity-dend"
-    s3_key: name of S3 key. This field is templatable when context is enabled, e.g. "log_data/{execution_date.year}/{execution_date.month}/"
-    delimiter: csv field delimiter
-    ignore_headers: '0' or '1'
-    data_format: 'csv' or 'json'
-    jsonpaths: path to JSONpaths file
-    
-    Returns: None
-    """
     template_fields = ("s3_key",)
     ui_color = '#358140'
     copy_sql = """
