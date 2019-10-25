@@ -4,7 +4,6 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 
-
 class StageToRedshiftOperator(BaseOperator):
     """
         This script gets data from S3 buckets and insert into the staging tables.
@@ -55,7 +54,6 @@ class StageToRedshiftOperator(BaseOperator):
                  s3_bucket="",
                  s3_key="",
                  delimiter=",",
-                 #fix_param="",
                  ignore_headers=1, #
                  data_format="csv",
                  jsonpaths="",
@@ -72,9 +70,8 @@ class StageToRedshiftOperator(BaseOperator):
         self.ignore_headers=ignore_headers
         self.data_format=data_format.lower()     # 'csv', 'json'
         self.jsonpaths=jsonpaths
-        #self.fix_param = fix_param
-
-
+        
+        
     def execute(self, context):
         aws_hook = AwsHook(self.aws_credentials_id)
         credentials = aws_hook.get_credentials()
@@ -102,7 +99,6 @@ class StageToRedshiftOperator(BaseOperator):
             credentials.access_key,
             credentials.secret_key,
             self.ignore_headers,
-            #self.fix_param,
             autoformat
         )
         self.log.info(f"Executing {formatted_sql} ...")
