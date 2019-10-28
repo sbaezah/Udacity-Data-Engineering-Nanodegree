@@ -12,7 +12,7 @@ class LoadFactOperator(BaseOperator):
             
             destination_table: name of the destination table to insert/update data. This table should be created previously of the DAG execution.
             
-            sql_statement: Is a 'select' query that gets data from staging tables and load the extracted data into the destination table (fact table).
+            sql_statement: This is a 'select' query that gets data from staging tables and loads the extracted data into the destination table (fact table).
         
         
         Output: Nothing.

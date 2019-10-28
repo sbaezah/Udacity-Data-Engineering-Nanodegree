@@ -17,8 +17,8 @@ class SqlQueries:
                                         WHERE page='NextSong'
                                      ) stg_events
                                 LEFT JOIN staging_songs songs ON  ( stg_events.song = songs.title
-                                                                    AND events.artist = songs.artist_name
-                                                                    AND events.length = songs.duration)
+                                                                    AND stg_events.artist = songs.artist_name
+                                                                    AND stg_events.length = songs.duration)
                                 WHERE 
                                         stg_events.start_time IS NOT NULL 
                                     AND songs.song_id IS NOT NULL

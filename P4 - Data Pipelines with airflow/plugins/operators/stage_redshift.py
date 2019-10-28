@@ -6,18 +6,18 @@ from airflow.utils.decorators import apply_defaults
 
 class StageToRedshiftOperator(BaseOperator):
     """
-        This script gets data from S3 buckets and insert into the staging tables.
+       This script gets data from S3 buckets and inserts it into the staging tables.
         
-        INPUT PARAMATERS:
+        INPUT PARAMETERS:
             aws_credentials_id: Connection Id of the Amazon Web services that should be created in airflow before execute the DAG
             
             redshift_conn_id: Connection Id of the Redshift cluster that should be created in Airflow before de DAG execution
             
             table: name of the destination table, in this operator the input table will be a staging table.
             
-            s3_bucket: the S3 bucket that will be use in the process, for this process the public buck should be "udacity-dend"
+            s3_bucket: the S3 bucket that will be used in the process, for this process the public bucket should be 'udacity-dend'
             
-            s3_key: S3 key that will be use, it is like a 'name folder', eg. 'log_data/' 
+            s3_key: S3 key that will be used, it is like a 'name folder', eg. 'log_data/'.
             
             data_format: the user can choose between two: 'csv' or 'json'.
             
@@ -27,7 +27,7 @@ class StageToRedshiftOperator(BaseOperator):
             
             data_format: the user can choose between 'json' or 'csv', when it try with 'csv', probably will need the ignore_headers parameter setted in '1'.
             
-            jsonpaths: this input is for the folder and file of JSONpaths file
+            jsonpaths: this input is for the folder and file of 'JSON paths' file
             
             
     Output:

@@ -1,6 +1,6 @@
 """
 Udacity Data Engineer Nanodegree
-5th project - data pipelines  with Airflow
+4th project - data pipelines  with Airflow
 Sebastian Baeza - October 2019
 """
 from datetime import datetime, timedelta
@@ -13,7 +13,7 @@ from helpers import SqlQueries, DataChecks
 default_args = {
     'owner': 'sbaezah',
     'start_date': datetime(2019, 9, 23),
-    'end_date': datetime(2019, 10, 30),
+    'end_date': datetime(2019, 11, 30),
     'depends_on_past': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
@@ -29,10 +29,10 @@ dag = DAG('udac_example_dag',
 
 
 """DAG schema components
-Based on the project's requeriments document, in this part i declare the 
+Based on the project's requirements document, in this part, I declare the 
 components of the DAG.
-We will have two "Dummy" components, those Dummy components are the "Start" and "End" operators.
-The other components allow to extract, transform and load our data. 
+We will have two "Dummy" components; those Dummy components are the "Start" and "End" operators.
+The other components allow us to extract, transform, and load our data. 
 """
 
 #Dummy operators
@@ -128,7 +128,7 @@ run_quality_checks = DataQualityOperator(
 )
 
 
-# Schema definition, this part allow to watch the "Graph" view or "Tree" view of the DAG 
+# Schema definition, this part allows watching the "Graph" view or "Tree" view of the DAG  
 
 start_operator >> stage_events_to_redshift
 start_operator >> stage_songs_to_redshift

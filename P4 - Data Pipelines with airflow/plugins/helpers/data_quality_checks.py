@@ -1,7 +1,7 @@
 class DataChecks:
     """Data quality check statements
-        Mainly consists on execute a query over the table that the user wants to 
-        test. The query is about to see if exists rows in the table or if the table have duplicated id.
+        Mainly consists on execute a query over the table that the user wants to test.
+        The query is about to see if exists rows in the table or if the table has duplicated id.
     """
     check_empty_table = """SELECT   (CASE WHEN COUNT(*) > 0 THEN 1 
                                     ELSE 0 

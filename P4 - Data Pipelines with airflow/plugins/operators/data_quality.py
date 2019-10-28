@@ -18,7 +18,7 @@ class DataQualityOperator(BaseOperator):
         
         Output
         
-        The process returns an exception when the data check fails       
+         The process returns an exception when the data check fails.        
     
     """
     

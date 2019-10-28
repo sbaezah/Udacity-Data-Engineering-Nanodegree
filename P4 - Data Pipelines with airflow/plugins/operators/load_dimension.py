@@ -3,20 +3,20 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 class LoadDimensionOperator(BaseOperator):
-    """ This script is called by the operator that load the data from staging tables to the dimension tables.
+    """ This script is called by the operator that loads the data from staging tables to the dimension tables.
         
         Input Parameters:
             redshift_conn_id: the name of the connection that should be configured in airflow, previously of the DAG execution
             
             destination_table: name of the destination table to insert/update data. This table should be created previously of the DAG execution.
             
-            sql_statement: Is a 'select' query that gets data from staging tables and load into the destination table (dimensions). The pre-requisite is that the table should be exists.
+            sql_statement: This is a 'select' query that gets data from staging tables and loads into the destination table (dimensions). The pre-requisite is that the table should exist.
             
-            update_mode: the user have two options: 'insert' or 'overwrite'. The 'insert' option just insert rows in the table, the 'overwrite' optin, truncates the destination table and then insert the rows.
+            update_mode: the user has two options: 'insert' or 'overwrite'. The 'insert' option insert rows in the table, the 'overwrite' option, truncates the destination table and then insert the rows.
             
          
      Output:
-            For the moment this script returns nothing. But, if the user give an input different of the two possible options, the class writes a message in the log.
+            For the moment, this script returns nothing.
     
     """
    
@@ -47,6 +47,4 @@ class LoadDimensionOperator(BaseOperator):
         elif self.update_mode == 'insert':
             update_query = 'INSERT INTO {} ({})'.format(self.destination_table, self.sql_statement)
         redshift.run(update_query)
-        else:
-            self.log.info('Option selected does not exists')
        
